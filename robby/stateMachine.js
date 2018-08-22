@@ -9,6 +9,18 @@ function _isUnSet() {
   return !Boolean(Reflect.ownKeys(state).length);
 }
 
+function _putInCarousel(facingIndex, direction) {
+  let shiftedFacingIndex = (direction === "anti-clockwise") ? facingIndex - 1 : facingIndex + 1;
+  const condition = (direction === "anti-clockwise") ? shiftedFacingIndex < 0 : shiftedFacingIndex > (facings.length - 1);
+  const correction = (direction === "anti-clockwise") ? facings.length : 0 - facings.length;
+
+  if (condition) {
+    shiftedFacingIndex = shiftedFacingIndex + correction;
+  }
+
+  return shiftedFacingIndex;
+}
+
 module.exports.place = function place(x, y, facing) {
   state.x = x;
   state.y = y;
@@ -20,75 +32,69 @@ module.exports.report = function report() {
 };
 
 module.exports.left = function left() {
-  return _isUnSet() ? false : (function () {
-    let shiftedFacingIndex = state.facingIndex - 1;
+  if (_isUnSet()) {
+    return false;
+  }
 
-    if (shiftedFacingIndex < 0) {
-      shiftedFacingIndex = shiftedFacingIndex + facings.length;
-    }
-
-    state.facingIndex = shiftedFacingIndex;
-    return true;
-  }());
+  state.facingIndex = _putInCarousel(state.facingIndex, "anti-clockwise");
+  return true;
 };
 
 module.exports.right = function right() {
-  return _isUnSet() ? false : (function () {
-    let shiftedFacingIndex = state.facingIndex + 1;
+  if (_isUnSet()) {
+    return false;
+  }
 
-    if (shiftedFacingIndex > (facings.length - 1)) {
-      shiftedFacingIndex = shiftedFacingIndex - facings.length;
-    }
-
-    state.facingIndex = shiftedFacingIndex;
-    return true;
-  }());
+  state.facingIndex = _putInCarousel(state.facingIndex, "clockwise");
+  return true;
 };
 
 module.exports.move = function move() {
-  return _isUnSet() ? false : (function () {
-    switch (state.facingIndex) {
-      case 0: {
-        const shiftedY = state.y + 1;
+  if (_isUnSet()) {
+    return false;
+  }
 
-        if (shiftedY > yAxisHigh) {
-          return false;
-        }
+  switch (state.facingIndex) {
+    case 0: {
+      const shiftedY = state.y + 1;
 
-        state.y = shiftedY;
-        break;
+      if (shiftedY > yAxisHigh) {
+        return false;
       }
-      case 1: {
-        const shiftedX = state.x + 1;
 
-        if (shiftedX > xAxisHigh) {
-          return false;
-        }
-
-        state.x = shiftedX;
-        break;
-      }
-      case 2: {
-        const shiftedY = state.y - 1;
-
-        if (shiftedY < yAxisLow) {
-          return false;
-        }
-
-        state.y = shiftedY;
-        break;
-      }
-      case 3: {
-        const shiftedX = state.x - 1;
-
-        if (shiftedX < xAxisLow) {
-          return false;
-        }
-
-        state.x = shiftedX;
-        break;
-      }
+      state.y = shiftedY;
+      break;
     }
-    return true;
-  }());
+    case 1: {
+      const shiftedX = state.x + 1;
+
+      if (shiftedX > xAxisHigh) {
+        return false;
+      }
+
+      state.x = shiftedX;
+      break;
+    }
+    case 2: {
+      const shiftedY = state.y - 1;
+
+      if (shiftedY < yAxisLow) {
+        return false;
+      }
+
+      state.y = shiftedY;
+      break;
+    }
+    case 3: {
+      const shiftedX = state.x - 1;
+
+      if (shiftedX < xAxisLow) {
+        return false;
+      }
+
+      state.x = shiftedX;
+      break;
+    }
+  }
+  return true;
 };
