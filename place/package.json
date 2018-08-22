@@ -1,0 +1,12 @@
+{
+  "name": "place",
+  "version": "1.0.0",
+  "description": "place",
+  "main": "cli.js",
+  "bin": { "place": "./cli.js" },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

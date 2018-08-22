@@ -1,0 +1,12 @@
+{
+  "name": "report",
+  "version": "1.0.0",
+  "description": "report",
+  "main": "cli.js",
+  "bin": { "report": "./cli.js" },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
