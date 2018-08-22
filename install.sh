@@ -11,3 +11,5 @@ npm install left -g
 
 chmod +x right/cli.js
 npm install right -g
+
+node robby/server.js
