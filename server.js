@@ -42,6 +42,11 @@ function _handleLeft(response) {
   response.end(left().toString());
 }
 
+function _handleRight(response) {
+  response.statusCode = 200;
+  response.end(right().toString());
+}
+
 const server = http.createServer((request, response) => {
 
   request.on('error', err => {
@@ -62,6 +67,8 @@ const server = http.createServer((request, response) => {
     _handleReport(response);
   } else if (request.method === 'PUT' && request.url === '/left') {
     _handleLeft(response);
+  } else if (request.method === 'PUT' && request.url === '/right') {
+    _handleRight(response);
   } else {
     response.statusCode = 404;
     response.end();
