@@ -27,6 +27,8 @@ const postData = querystring.stringify({
   facing
 });
 
+const errMsg = 'An error occurred placing me on to the table';
+
 const options = {
   hostname: 'localhost',
   port: 3000,
@@ -40,12 +42,12 @@ const options = {
 
 const req = http.request(options, (res) => {
   if (res.statusCode !== 200) {
-    console.error('An error occurred placing me on to the table');
+    console.error(errMsg);
   }
 });
 
 req.on('error', ({ message }) => {
-  console.error(`A problem occurred with the request: ${message}`);
+  console.error(`${errMsg}: ${message}`);
 });
 
 req.write(postData);
