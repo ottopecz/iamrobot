@@ -28,7 +28,9 @@ module.exports.place = function place(x, y, facing) {
 };
 
 module.exports.report = function report() {
-  return _isUnSet() ? {} : { "x": state.x, "y": state.y, "facing": facings[state.facingIndex] }
+  const {x, y, facingIndex} = state;
+
+  return _isUnSet() ? {} : { x, y, "facing": facings[facingIndex] }
 };
 
 module.exports.left = function left() {
