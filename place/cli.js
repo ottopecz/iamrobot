@@ -40,15 +40,15 @@ const options = {
   }
 };
 
-const req = http.request(options, (res) => {
-  if (res.statusCode !== 200) {
+const request = http.request(options, response => {
+  if (response.statusCode !== 200) {
     console.error(errMsg);
   }
 });
 
-req.on('error', ({ message }) => {
+request.on('error', ({ message }) => {
   console.error(`${errMsg}: ${message}`);
 });
 
-req.write(postData);
-req.end();
+request.write(postData);
+request.end();

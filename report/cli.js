@@ -15,22 +15,21 @@ const options = {
 
 const errMsg = 'An error occurred reporting my status';
 
-const req = http.request(options, (res) => {
-  if (res.statusCode !== 200) {
+const request = http.request(options, response => {
+  if (response.statusCode !== 200) {
     console.error(errMsg);
     return;
   }
 
-  res.setEncoding('utf8');
+  response.setEncoding('utf8');
 
   let body;
 
-  res
-    .on('data', (chunk) => {
+  response
+    .on('data', chunk => {
       body = chunk;
     })
     .on('end', () => {
-
       if (!body) {
         console.log('Place me on the table. Like "place 0 0 NORTH"');
         return;
@@ -42,8 +41,8 @@ const req = http.request(options, (res) => {
     });
 });
 
-req.on('error', ({ message }) => {
+request.on('error', ({ message }) => {
   console.error(`${errMsg}: ${message}`);
 });
 
-req.end();
+request.end();

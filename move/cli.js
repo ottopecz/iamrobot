@@ -26,7 +26,7 @@ const request = http.request(options, response => {
   let body ;
 
   response
-    .on('data', (chunk) => {
+    .on('data', chunk => {
       body = chunk;
     })
     .on('end', () => {

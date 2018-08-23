@@ -20,7 +20,7 @@ function _handlePing(response) {
 function _handlePlace(request, response) {
   let body = [];
   request
-    .on('data', (chunk) => {
+    .on('data', chunk => {
       body.push(chunk);
     })
     .on('end', () => {
