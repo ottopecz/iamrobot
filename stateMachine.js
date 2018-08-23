@@ -51,7 +51,7 @@ module.exports.right = function right() {
 
 module.exports.move = function move() {
   if (_isUnSet()) {
-    return false;
+    return {success: false, isSet: false};
   }
 
   switch (state.facingIndex) {
@@ -59,7 +59,7 @@ module.exports.move = function move() {
       const shiftedY = state.y + 1;
 
       if (shiftedY > yAxisHigh) {
-        return false;
+        return {success: false, isSet: true};
       }
 
       state.y = shiftedY;
@@ -69,7 +69,7 @@ module.exports.move = function move() {
       const shiftedX = state.x + 1;
 
       if (shiftedX > xAxisHigh) {
-        return false;
+        return {success: false, isSet: true};
       }
 
       state.x = shiftedX;
@@ -79,7 +79,7 @@ module.exports.move = function move() {
       const shiftedY = state.y - 1;
 
       if (shiftedY < yAxisLow) {
-        return false;
+        return {success: false, isSet: true};
       }
 
       state.y = shiftedY;
@@ -89,12 +89,12 @@ module.exports.move = function move() {
       const shiftedX = state.x - 1;
 
       if (shiftedX < xAxisLow) {
-        return false;
+        return {success: false, isSet: true};
       }
 
       state.x = shiftedX;
       break;
     }
   }
-  return true;
+  return {success: true, isSet: true};
 };

@@ -47,6 +47,11 @@ function _handleRight(response) {
   response.end(right().toString());
 }
 
+function _handleMove(response) {
+  response.statusCode = 200;
+  response.end(querystring.stringify(move()));
+}
+
 const server = http.createServer((request, response) => {
 
   request.on('error', err => {
@@ -69,6 +74,8 @@ const server = http.createServer((request, response) => {
     _handleLeft(response);
   } else if (request.method === 'PUT' && request.url === '/right') {
     _handleRight(response);
+  } else if (request.method === 'PUT' && request.url === '/move') {
+    _handleMove(response);
   } else {
     response.statusCode = 404;
     response.end();

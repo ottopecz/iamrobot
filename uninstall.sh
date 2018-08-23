@@ -10,4 +10,6 @@ npm uninstall left -g
 
 npm uninstall right -g
 
+npm uninstall move -g
+
 echo UNINSTALLED
