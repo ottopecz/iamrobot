@@ -1,0 +1,12 @@
+{
+  "name": "move",
+  "version": "1.0.0",
+  "description": "move",
+  "main": "cli.js",
+  "bin": { "move": "./cli.js" },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
