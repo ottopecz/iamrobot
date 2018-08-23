@@ -31,7 +31,7 @@ const req = http.request(options, (res) => {
 
     const {x, y, facing} = querystring.parse(body);
 
-    console.log(`My x coordinate is ${x}, my y coordinate is ${y} and I'm facing ${facing}`);
+    console.log(`My position is "x": ${x}, "y": ${y} and I'm facing ${facing}`);
   });
 });
 
