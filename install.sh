@@ -12,4 +12,8 @@ npm install left -g
 chmod +x right/cli.js
 npm install right -g
 
-node robby/server.js
+npm install
+
+npx pm2 start server.js
+
+echo INSTALLED
