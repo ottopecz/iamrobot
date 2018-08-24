@@ -10,7 +10,7 @@
 
 ## Commands
 Note: commands can be executed from anywhere in the filesystem.
-- `place <0..4> <0..4> <NORTH|EAST|SOUTH|WEST>` Places the robot on the table grid. Example `place 0 0 NORTH`
+- `place <0..4> <0..4> <NORTH|EAST|SOUTH|WEST>` Places the robot on the table grid. Example: `place 0 0 NORTH`
 - `report` The robot reports its position.
 - `left` The robot makes a quarter turn anti-clockwise.
 - `right` The robot makes a quarter turn clockwise.
