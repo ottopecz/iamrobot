@@ -5,6 +5,15 @@ const xAxisHigh = 4;
 const yAxisLow = 0;
 const yAxisHigh = 4;
 
+const allowedStates = ['0', '1', '2', '3', '4'].reduce((accu1, curr1) => {
+	['0', '1', '2', '3', '4'].forEach((curr2) => {
+		['0', '1', '2', '3'].forEach((curr3) => {
+			accu1.push(`${curr1}${curr2}${curr3}`);
+		});
+	});
+	return accu1;
+}, []);
+
 function _isUnSet() {
   return !Boolean(Reflect.ownKeys(state).length);
 }
@@ -58,43 +67,47 @@ module.exports.move = function move() {
 
   switch (state.facingIndex) {
     case 0: {
-      const shiftedY = state.y + 1;
+      const {x, y, facingIndex} = state;
+			const provisionalState = `${x}${y + 1}${facingIndex}`;
 
-      if (shiftedY > yAxisHigh) {
-        return {success: false, isSet: true};
-      }
+			if (!allowedStates.includes(provisionalState)) {
+			  return {success: false, isSet: true};
+			}
 
-      state.y = shiftedY;
+			state.y = y + 1;
       break;
     }
     case 1: {
-      const shiftedX = state.x + 1;
+    	const {x, y, facingIndex} = state;
+			const provisionalState = `${x + 1}${y}${facingIndex}`;
 
-      if (shiftedX > xAxisHigh) {
-        return {success: false, isSet: true};
-      }
+			if (!allowedStates.includes(provisionalState)) {
+				return {success: false, isSet: true};
+			}
 
-      state.x = shiftedX;
+			state.x = x + 1;
       break;
     }
     case 2: {
-      const shiftedY = state.y - 1;
+    	const {x, y, facingIndex} = state;
+			const provisionalState = `${x}${y - 1}${facingIndex}`;
 
-      if (shiftedY < yAxisLow) {
-        return {success: false, isSet: true};
-      }
+			if (!allowedStates.includes(provisionalState)) {
+				return {success: false, isSet: true};
+			}
 
-      state.y = shiftedY;
+			state.y = y - 1;
       break;
     }
     case 3: {
-      const shiftedX = state.x - 1;
+			const {x, y, facingIndex} = state;
+			const provisionalState = `${x - 1}${y}${facingIndex}`;
 
-      if (shiftedX < xAxisLow) {
-        return {success: false, isSet: true};
-      }
+			if (!allowedStates.includes(provisionalState)) {
+				return {success: false, isSet: true};
+			}
 
-      state.x = shiftedX;
+			state.x = x - 1;
       break;
     }
   }
