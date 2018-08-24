@@ -15,7 +15,7 @@ function validateFacing(value) {
   return ['NORTH', 'EAST', 'SOUTH', 'WEST'].includes(value);
 }
 
-const [ , , x, y, facing] = process.argv;
+const [, , x, y, facing] = process.argv;
 
 if (!validateCoordinate(x) || !validateCoordinate(y) || !validateFacing(facing)) {
   throw new RangeError('The x and the y coordinates should be between 0..4, the facing parameter should be either of NORTH|EAST|SOUTH|WEST')
@@ -46,7 +46,7 @@ const request = http.request(options, response => {
   }
 });
 
-request.on('error', ({ message }) => {
+request.on('error', ({message}) => {
   console.error(`${errMsg}: ${message}`);
 });
 
