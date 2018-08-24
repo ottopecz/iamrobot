@@ -41,7 +41,7 @@ const request = http.request(options, response => {
     });
 });
 
-request.on('error', ({ message }) => {
+request.on('error', ({message}) => {
   console.error(`${errMsg}: ${message}`);
 });
 

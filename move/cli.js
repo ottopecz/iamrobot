@@ -23,7 +23,7 @@ const request = http.request(options, response => {
 
   response.setEncoding('utf8');
 
-  let body ;
+  let body;
 
   response
     .on('data', chunk => {
@@ -43,7 +43,7 @@ const request = http.request(options, response => {
     });
 });
 
-request.on('error', ({ message }) => {
+request.on('error', ({message}) => {
   console.error(`A problem occurred with the request: ${message}`);
 });
 

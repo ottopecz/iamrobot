@@ -36,7 +36,7 @@ const request = http.request(options, response => {
     });
 });
 
-request.on('error', ({ message }) => {
+request.on('error', ({message}) => {
   console.error(`A problem occurred with the request: ${message}`);
 });
 
